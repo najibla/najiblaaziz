@@ -7,8 +7,6 @@ cache:
     - node_modules
 script:
   - ng lint
-  addons:
-  chrome: stable
 before_deploy:
   - yarn global add travis-ci-cloudfront-invalidation
   - yarn run build
