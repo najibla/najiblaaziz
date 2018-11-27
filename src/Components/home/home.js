@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import './home.css';
 
 export default class home extends PureComponent {
   render() {
