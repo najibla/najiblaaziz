@@ -4,7 +4,7 @@ import './home.css';
 export default class home extends PureComponent {
   render() {
     return (
-        <div style={{"text-align": "center"}} className="mt-3">
+        <div style={{"textAlign": "center"}} className="mt-3">
             <h1>
                 Welcome!
             </h1>
