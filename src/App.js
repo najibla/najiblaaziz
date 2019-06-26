@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import Home from './Components/home/home';
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Home />
-      </div>
-    );
-  }
-}
+import Header from './Components/header/header';
+import Main from './Components/main/main';
+
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+);
 
 export default App;
