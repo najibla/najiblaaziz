@@ -1,20 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HomeOutlined from '@material-ui/icons/HomeOutlined';
 import './header.css';
 
 const Header = () => {
+  const reload = () => window.location.reload();
+
   return (
     <header>
       <nav>
         <ul style={{ textAlign: 'center' }}>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/dogs">Dogs</Link>
-          </li>
-          <li>
-            <Link to="/cats">Cats</Link>
+            <Link to="/" onClick={reload}>
+              <HomeOutlined fontSize="large" color="primary" />
+            </Link>
           </li>
         </ul>
       </nav>
