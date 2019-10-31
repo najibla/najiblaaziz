@@ -5,7 +5,6 @@ import HelpOutlineOutlined from '@material-ui/icons/HelpOutlineOutlined';
 import './header.css';
 import { Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   modal: {
