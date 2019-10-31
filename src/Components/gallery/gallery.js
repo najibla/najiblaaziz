@@ -3,7 +3,6 @@ import { ReactBnbGallery } from 'react-bnb-gallery';
 import { getName } from 'country-list';
 import './gallery.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { textAlign } from '@material-ui/system';
 
 const Gallery = props => {
   const [photos, setPhotos] = useState([]);
