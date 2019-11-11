@@ -3,7 +3,7 @@ import Gallery from 'react-grid-gallery';
 import { getName } from 'country-list';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core';
-
+import { useParams } from 'react-router-dom';
 const useStyles = makeStyles({
   comingSoon: {
     textAlign: 'center',
@@ -19,13 +19,12 @@ const Photos = props => {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { countryCode } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const res = await fetch(
-        `https://dev.api.najiblaaziz.com/${props.countryClicked}`
-      );
+      const res = await fetch(`https://dev.api.najiblaaziz.com/${countryCode}`);
       res
         .json()
         .then(res => {
@@ -51,16 +50,16 @@ const Photos = props => {
 
   return error ? (
     <div className={classes.comingSoon}>
-      Pictures from {getName(props.countryClicked)} Coming soon!
+      Pictures from {getName(countryCode)} Coming soon!
     </div>
   ) : !loading ? (
-    !(props.countryClicked && photos.length) ? (
+    !(countryCode && photos.length) ? (
       <></>
     ) : (
       <Gallery
+        backdropClosesModal={true}
         enableImageSelection={false}
         images={photos}
-        preloadNextImage={false}
         showLightboxThumbnails={true}
       />
     )

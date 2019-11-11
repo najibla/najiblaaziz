@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WorldMap from '../map/map';
-import Gallery from '../gallery/gallery';
+import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const Home = () => {
-  const [countryClicked, setCountryClicked] = useState(null);
+  const history = useHistory();
 
   const setCountryClickedCB = countryCode => {
-    setCountryClicked(countryCode);
-  };
-
-  const setGalleryClose = () => {
-    setCountryClicked(null);
+    history.push(countryCode);
   };
 
   return (
     <div>
-      {!countryClicked && <WorldMap onCountryClicked={setCountryClickedCB} />}
-      {countryClicked && (
-        <Gallery
-          countryClicked={countryClicked}
-          onGalleryClose={setGalleryClose}
-        />
-      )}
+      <WorldMap onCountryClicked={setCountryClickedCB} />
     </div>
   );
 };
-
-export default Home;
+export default withRouter(Home);

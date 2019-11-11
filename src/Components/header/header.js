@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 const Header = () => {
   const classes = useStyles();
-  const reload = () => window.location.reload();
   const [questionModalOpen, setModalOpen] = useState(false);
   return (
     <>
@@ -37,7 +36,6 @@ const Header = () => {
             >
               <Link
                 to="/"
-                onClick={reload}
                 style={{
                   marginRight: '30px'
                 }}
