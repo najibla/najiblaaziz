@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { ReactBnbGallery } from 'react-bnb-gallery';
+import React, { useEffect, useState } from 'react';
+import Gallery from 'react-grid-gallery';
 import { getName } from 'country-list';
-import './gallery.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core';
 
-const Gallery = props => {
+const useStyles = makeStyles({
+  comingSoon: {
+    textAlign: 'center',
+    width: '50%',
+    margin: '0 auto',
+    padding: '20px',
+    backgroundColor: '#6dc8cf',
+    border: '3px solid black'
+  }
+});
+const Photos = props => {
+  const classes = useStyles();
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -18,7 +30,13 @@ const Gallery = props => {
         .json()
         .then(res => {
           res = res.map(({ src, thumbnail }) =>
-            Object.assign({}, { photo: src, thumbnail: thumbnail })
+            Object.assign(
+              {},
+              {
+                src,
+                thumbnail
+              }
+            )
           );
           setPhotos(res);
           setLoading(false);
@@ -26,27 +44,25 @@ const Gallery = props => {
         .catch(err => {
           setLoading(false);
           setError(true);
-          console.log(err);
         });
     };
     fetchData();
   }, []);
 
-  const toggleGallery = () => {
-    props.onGalleryClose();
-  };
-
   return error ? (
-    <div className="coming-soon">
+    <div className={classes.comingSoon}>
       Pictures from {getName(props.countryClicked)} Coming soon!
     </div>
   ) : !loading ? (
     !(props.countryClicked && photos.length) ? (
       <></>
     ) : (
-      <div>
-        <ReactBnbGallery show={true} photos={photos} onClose={toggleGallery} />
-      </div>
+      <Gallery
+        enableImageSelection={false}
+        images={photos}
+        preloadNextImage={false}
+        showLightboxThumbnails={true}
+      />
     )
   ) : (
     <div
@@ -66,4 +82,4 @@ const Gallery = props => {
   );
 };
 
-export default Gallery;
+export default Photos;

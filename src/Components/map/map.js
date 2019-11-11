@@ -35,7 +35,10 @@ const mapData = {
   US: 7803
 };
 
-const markers = [{ countryCode: 'MV', latLng: [3.2, 73.22], name: 'Maldives' }];
+const markers = [
+  { countryCode: 'MV', latLng: [3.2, 73.22], name: 'Maldives' },
+  { countryCode: 'MU', latLng: [-20.34, 57.55], name: 'Mauritius' }
+];
 
 const Map = props => {
   const mapElement = useRef(null);
@@ -50,7 +53,6 @@ const Map = props => {
       e.preventDefault();
       return;
     }
-    props.onMapClicked(true);
     props.onCountryClicked(countryCode);
     setTimeout(() => {
       Array.from(document.getElementsByClassName('jvectormap-tip')).forEach(
@@ -66,7 +68,7 @@ const Map = props => {
       <VectorMap
         map={'world_mill'}
         ref={mapElement}
-        backgroundColor="#6dc8cf" //change it to ocean blue: #0077be
+        backgroundColor="#ffff" //change it to ocean blue: #0077be
         zoomOnScroll={true}
         regionsSelectable={false}
         markersSelectable={false}
