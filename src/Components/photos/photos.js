@@ -60,7 +60,6 @@ const Photos = props => {
         backdropClosesModal={true}
         enableImageSelection={false}
         images={photos}
-        showLightboxThumbnails={true}
       />
     )
   ) : (
